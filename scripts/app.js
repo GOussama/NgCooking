@@ -7,7 +7,7 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('myNgCookingYeomanApp', [
-  'ngRoute'
+  'ngRoute','ngCookies'
 ]);
 
 /**

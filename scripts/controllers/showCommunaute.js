@@ -10,6 +10,7 @@
 
 angular.module('myNgCookingYeomanApp')
 .controller('ShowCommunauteCtrl', function($scope,$routeParams,$filter,$http) {
+
  
     $scope.communaute_id = $routeParams.communauteId;
     
@@ -29,5 +30,6 @@ angular.module('myNgCookingYeomanApp')
                     return false;
                 })[0];      
              });
+
    	 
 });
