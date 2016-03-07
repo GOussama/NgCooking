@@ -12,7 +12,6 @@ angular.module('myNgCookingYeomanApp')
 			
 	}
 
-
 	DataFactory.getElementById = function($scope,fileName,id){
 
 		$http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json')

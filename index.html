@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="myNgCookingYeomanApp">
+<html lang="fr" ng-app="myNgCookingYeomanApp" ng-controller="MainCtrl">
 <head>
 
   <meta charset="utf-8" />
@@ -35,7 +35,7 @@
 
 </head>
 
-<body ng-app="myNgCookingYeomanApp" ng-controller="MainCtrl">
+<body ng-app="myNgCookingYeomanApp" ng-controller="LoginCtrl" >
 
 <div id="wrapper">
   <header id="header" >
@@ -49,8 +49,8 @@
           </a>
 
           <div class="desc">
-            <h6 ng-show="userName.length > 0">Hello {{userName}}</h6>
-            <h6 ng-hide="userName.length > 0">This is your first visit.</h6> 
+            <h5 ng-show="userName.length > 0">Bienvenue {{userName}}</h5>
+            <h6 ng-hide="userName.length > 0">C'est votre première visite ? Inscivez-vous</h6> 
             <p>Partagez vos meilleures recettes avec<br/>la communauté NgCooking</p>
             <p><a class="link" href="#/home"><strong>{{recettes.length}} recettes</strong> à découvrir !</a></p> 
           </div>
@@ -86,7 +86,7 @@
               
             </ul>
 
-            <div class="account-area">         
+            <div class="account-area">       
               <button type="button" class="button connect" data-popin-open="connect_popin" ng-hide="authenticated"  ><span class="icon"></span>Connexion</button>
 
               <a href="#/communaute_details" class="button account"  ng-show="authenticated"><span class="icon"></span>Mon profil</a>
@@ -121,7 +121,7 @@
   </footer>
 </div>
 
-<div class="popin" data-popin="connect_popin" ng-hide="authenticated" ng-controller="LoginCtrl">
+<div class="popin" data-popin="connect_popin" ng-hide="authenticated" >
   <div class="popin-content">
     <div class="popin-scroll">
       <p class="popin-title">Connexion</p>
@@ -147,7 +147,6 @@
     </div>
     <button class="close popin-close"><span class="glyphicon glyphicon-remove"></span></button>
   </div>
- 
   <div class="popin-backlayer"></div>
 </div>
 
@@ -158,17 +157,13 @@
   <script type="text/javascript" src="scripts/controllers/recette.js"></script>
   <script type="text/javascript" src="scripts/controllers/login.js"></script>
 
-
    <script type="text/javascript" src="scripts/controllers/maincontroller.js"></script>
   <script type="text/javascript" src="scripts/controllers/communaute.js"></script>
   <script type="text/javascript" src="scripts/controllers/showRecette.js"></script>
   <script type="text/javascript" src="scripts/controllers/showCommunaute.js"></script>
 
   <script type="text/javascript" src="scripts/controllers/ingredients.js"></script>
-   <script type="text/javascript" src="scripts/services/profileService.js"></script>
-
-
-
+  <script type="text/javascript" src="scripts/services/profileService.js"></script>
   <script type="text/javascript" src="scripts/services/mainService.js"></script>
 
   <script type="text/javascript">

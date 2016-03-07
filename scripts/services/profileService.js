@@ -10,7 +10,7 @@ angular.module('myNgCookingYeomanApp')
 		return $http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json');
 			
 	}
-
+	
 	return DataFactory;
 
 }]);
