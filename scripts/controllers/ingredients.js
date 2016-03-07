@@ -9,19 +9,14 @@
  */
 
 angular.module('myNgCookingYeomanApp')
-.controller('ShowIngredientCtrl', function($scope,$http,$location) {
+.controller('ShowIngredientCtrl',['$scope','$http','MainService', function($scope,$http,MainService) {
+
+		MainService.getDatas($scope,'ingredients')
+	  		.then(function(res){
+
+				$scope.ingredients = res.data ;
+
+			});
 
 
-		$scope.$root.shouldActive = "ingredients"; 
-
-		$scope.path = $location.path();
-
-		$http.get('http://www.ngcooking.com/json/ingredients.json')
-           .then(function(res){
-                
-                	$scope.ingredients = res.data;    
-                            
-             });
-
-
-	});
+	}]);

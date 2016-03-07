@@ -9,11 +9,10 @@
  */
 
 angular.module('myNgCookingYeomanApp')
-  .controller('HomeCtrl', function ($scope,$http) {
+  .controller('HomeCtrl',  ['$scope','$http','MainService', function ($scope,$http,MainService) {
 
-  	$http.get('http://www.ngcooking.com/json/recettes.json')
-           .then(function(res){
-                $scope.recettes = res.data;
-                            
-             });
-  });
+  	MainService.getDatas($scope,'recettes')
+  		.then(function(res){
+				 $scope.recettes = res.data ;		 	
+		});
+  }]);

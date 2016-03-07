@@ -9,19 +9,12 @@
  */
 
 angular.module('myNgCookingYeomanApp')
-  .controller('RecetteCtrl', function ($scope,$http,$location) {
+  .controller('RecetteCtrl', ['$scope','$http','MainService', function ($scope,$http,MainService) {
 
 
-  	$scope.path = $location.path();
+  	MainService.getDatas($scope,'recettes')
+  		.then(function(res){
+				 $scope.recettes = res.data ;		 	
+		});
 
-  	$http.get('http://www.ngcooking.com/json/recettes.json')
-           .then(function(res){
-                $scope.recettes = res.data;    
-                            
-             });
-
-
-
-
-
-  });
+  }]);

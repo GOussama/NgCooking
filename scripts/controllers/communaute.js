@@ -9,18 +9,11 @@
  */
 
 angular.module('myNgCookingYeomanApp')
-  .controller('CommunauteCtrl', function ($scope,$http,$location) {
+  .controller('CommunauteCtrl', ['$scope','$http','MainService', function ($scope,$http,MainService) {
 
-
-  	$scope.path = $location.path();
-  	
-  	$scope.$root.shouldActive = "communaute"; 
-
-  	$http.get('http://www.ngcooking.com/json/communaute.json')
-           .then(function(res){
-                
-                $scope.communautes = res.data;    
-                            
-             });
+           MainService.getDatas($scope,'communaute')
+  		.then(function(res){
+				 $scope.communautes = res.data ;		 	
+		});
     
-  });
+  }]);

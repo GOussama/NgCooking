@@ -9,16 +9,12 @@
  */
 
 angular.module('myNgCookingYeomanApp')
-  .controller('LoginCtrl', function ($scope,$http,$location,ProfileService,$rootScope,$cookies) {
+  .controller('LoginCtrl', ['$scope','ProfileService','$cookies', function ($scope,ProfileService,$cookies) {
 
 
   	$scope.login = function(){
 
-
-  		console.log("Ma cookie est " +  $scope.showConnex);	
-
-
-  		ProfileService.getUsers($scope,$scope.identifiant,$scope.motdepass).success(function(data){
+  		ProfileService.getUsers($scope,'communaute').success(function(data){
 
 				 $scope.user = data.filter(function(user){
 				 	
@@ -27,23 +23,17 @@ angular.module('myNgCookingYeomanApp')
                     	return false;
 
 				 })[0];
-
-		$rootScope.showConnex = false;
-		$cookies.put('showConnex', false);
-
-
-			console.log("My user is " + $scope.user.surname);	 	
-			/*
-			$rootScope.myVar = true; 
-			$cookies.put('showConnex', false);
-			$cookies.put('showDecon', false);
-			$cookies.put('showMonProfil', false);	 
-			*/
-			console.log("Ma cookie est " +  $scope.showConnex);	
   		});	
+
+            $cookies.put('authenticated', true) ;
+            $cookies.put('MyUserName', $scope.user.surname);
   	}
+
+
+      $scope.logout = function(){
+
+            $cookies.remove('authenticated');
+            $cookies.remove('MyUserName');
+      }
   		
-
-
-
-  });
+  }]);

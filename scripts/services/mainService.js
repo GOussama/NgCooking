@@ -1,29 +1,24 @@
 'use strict';
 
 angular.module('myNgCookingYeomanApp')
-.factory('MainService',function($http){
+.factory('MainService',['$http', '$cookies', function($http,$cookies){
 	
 	var DataFactory = {};
 
 
 	DataFactory.getDatas = function($scope,fileName){
 
-		$http.get('http://www.ngcooking.com/json/' + fileName + '.json')
-			.then(function(res){
-
-				 $scope.recettes = res.data ;
-				 	
-			});
-
-		return	$scope.results;
+		return $http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json');
+			
 	}
 
-	DataFactory.getUser = function($scope,identifiant,motdepass){
 
-		$http.get('http://www.ngcooking.com/json/communaute.json')
+	DataFactory.getElementById = function($scope,fileName,id){
+
+		$http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json')
 			.then(function(res){
-				 $scope.user = res.data.filter(function(user){	
-				 		if(user.email == identifiant && user.password == motdepass)
+				 $scope.communuate = res.data.filter(function(element){	
+				 		if (element.id == id)
 				 			return true;
                     	return false;           	
 				 })[0];	
@@ -34,4 +29,4 @@ angular.module('myNgCookingYeomanApp')
 
 	return DataFactory;
 
-});
+}]); 
