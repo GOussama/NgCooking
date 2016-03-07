@@ -9,10 +9,10 @@
  */
 
 angular.module('myNgCookingYeomanApp')
-.controller('ShowCommunauteCtrl', ['$scope','$routeParams','MainService' ,function($scope,$routeParams,MainService) {
+.controller('ShowCommunauteCtrl', ['$scope','$routeParams','MainService','$cookies' ,function($scope,$routeParams,MainService,$cookies) {
 
  
-    $scope.communaute_id = $routeParams.communauteId;
+    $scope.communaute_id = $routeParams.communauteId || $cookies.get('userID');
     
     //MainService.getElementById($scope,'communaute',$scope.communaute_id);
     

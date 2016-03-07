@@ -20,9 +20,8 @@ angular.module('myNgCookingYeomanApp')
 		 $scope.authenticated =  $cookies.get('authenticated') || "" ;
 		 //$cookies.put('authenticated', true) ;
 
-
 		console.log("The userName value is : " +  $scope.userName );
-  		
+
   		MainService.getDatas($scope,'recettes').then(function(res) {
 			       
 			       $scope.recettes = res.data;
@@ -33,12 +32,14 @@ angular.module('myNgCookingYeomanApp')
 
 		            $cookies.remove('authenticated');
 		            $cookies.remove('MyUserName');
+			$cookies.remove('userID');
 
-		            console.log("I'm Log out");
+		            console.log("I'm Loging out");
+		            
+		            $location.url('/home');
 		            $window.location.reload();
 		         
 		 }
-
 
 		$scope.select = function(item) {
 

@@ -25,6 +25,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when("/recettes_details/:recetteId", {templateUrl: "recettes_details.html", controller: "ShowRecetteCtrl"})
     .when("/recettes_new", {templateUrl: "recettes_new.html", controller: ""})
     .when("/communaute", {templateUrl: "communaute.html", controller: ""})
+    .when("/communaute_details",{templateUrl: "communaute_details.html", controller: "ShowCommunauteCtrl"})
     .when("/communaute_details/:communauteId", {templateUrl: "communaute_details.html", controller: "ShowCommunauteCtrl"})
     
     // Pages

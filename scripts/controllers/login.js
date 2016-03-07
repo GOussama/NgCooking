@@ -9,8 +9,7 @@
  */
 
 angular.module('myNgCookingYeomanApp')
-  .controller('LoginCtrl', ['$scope','ProfileService','$cookies','$window', function ($scope,ProfileService,$cookies,$window) {
-
+  .controller('LoginCtrl', ['$scope','ProfileService','$cookies','$window','$location', function ($scope,ProfileService,$cookies,$window,$location) {
 
   	$scope.login = function() {
 
@@ -27,9 +26,12 @@ angular.module('myNgCookingYeomanApp')
                         console.log('My user is ' + $scope.user.surname);
                         $cookies.put('authenticated', true) ;
                         $cookies.put('MyUserName', $scope.user.surname);
-                        $window.location.reload();
-                  
+                        $cookies.put('userID', $scope.user.id);
 
+                        console.log("I'm Loging in");
+                        
+                        $location.url('/home');
+                        $window.location.reload();
 
   		});	
   	}
