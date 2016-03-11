@@ -11,8 +11,5 @@
 angular.module('myNgCookingYeomanApp')
   .controller('HomeCtrl',  ['$scope','$http','MainService', function ($scope,$http,MainService) {
 
-  	MainService.getDatas($scope,'recettes')
-  		.then(function(res){
-				 $scope.recettes = res.data ;		 	
-		});
+  	
   }]);

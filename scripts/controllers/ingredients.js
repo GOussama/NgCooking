@@ -11,12 +11,16 @@
 angular.module('myNgCookingYeomanApp')
 .controller('ShowIngredientCtrl',['$scope','$http','MainService', function($scope,$http,MainService) {
 
+		$scope.ingredientLimit = 3;
+		
 		MainService.getDatas($scope,'ingredients')
 	  		.then(function(res){
 
 				$scope.ingredients = res.data ;
 
 			});
+
+
 
 
 	}]);
