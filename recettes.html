@@ -19,7 +19,7 @@
 
 												<div class="filter">
 													<p><label for="">Ingrédient(s) utlisé(s) pour la recette</label></p>
-				                            		<p><input type="text" placeholder="ex: poulet;oeuf;farine" ng-model="search.ingredients "></p>
+				                            		<p><input type="text" placeholder="ex: poulet;oeuf;farine" ng-model="ingredients"></p>
 												</div>
 
 												<div class="filter">
@@ -57,7 +57,7 @@
 							<div class="result" >
 								<div class="recettes row" >
 
-										     <div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in recettes | orderBy:sortorder | filter:search" >
+										     <div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in recettes | orderBy:sortorder | filter:tag | filter:search" >
 										     
 												<a href="#/recettes_details/{{recette.id}}">
 													<img ng-src="{{recette.picture}}" alt="Cake au jambon et aux olives">

@@ -33,7 +33,6 @@ angular.module('myNgCookingYeomanApp')
 			
 			});
 
-
   		function setTheAverage(recettes) {
 
 			//console.debug(recettes);  
