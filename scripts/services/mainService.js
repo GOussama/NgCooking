@@ -8,13 +8,14 @@ angular.module('myNgCookingYeomanApp')
 
 	DataFactory.getDatas = function($scope,fileName){
 
-		return $http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json');
+		return $http.get('http://localhost:8888/NgCooking/scripts/json/' + fileName + '.json');
 			
-	}
+	};
+
 
 	DataFactory.getElementById = function($scope,fileName,id){
 
-		$http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json')
+		$http.get('http://localhost:8888/NgCooking/scripts/json/' + fileName + '.json')
 			.then(function(res){
 				 $scope.communuate = res.data.filter(function(element){	
 				 		if (element.id == id)
@@ -24,7 +25,7 @@ angular.module('myNgCookingYeomanApp')
 			});
 		
 		return	$scope.user;
-	}
+	};
 
 	return DataFactory;
 

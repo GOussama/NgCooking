@@ -6,6 +6,8 @@
 		"name": "Tarte citron meringué",
 		
 		"creatorId": 1,
+
+		"created_at": "11-11-2016 12:30",
 		
 		"isAvailable": true,
 		
@@ -42,6 +44,9 @@
 		"id": "tajine-de-poulet",
 		"name": "Tajine de poulet",
 		"creatorId": 1,
+
+		"created_at": "11-11-2016 13:30",
+
 		"isAvailable": true,
 		"picture": "img/recettes/tajine-de-poulet.jpg",
 		"calories": 180,
@@ -67,6 +72,9 @@
 		"id": "cake-jambon-olive",
 		"name": "Cake au jambon et aux olives",
 		"creatorId": 2,
+
+		"created_at": "11-11-2014",
+
 		"isAvailable": true,
 		"picture": "img/recettes/cake-jambon-olive.jpg",
 		"calories": 330,
@@ -86,6 +94,9 @@
 		"id": "saumon-echalotte",
 		"name": "Saumon à l'échalotte",
 		"creatorId": 3,
+
+		"created_at": "11-11-2013 13:30",
+
 		"isAvailable": true,
 		"picture": "img/recettes/saumon-echalotte.jpg",
 		"calories": 320,
@@ -101,6 +112,9 @@
 		"id": "salade-de-fruit-granite",
 		"name": "Salade de fruits au granité citron",
 		"creatorId": 1,
+
+		"created_at": "11-11-2012 13:30",
+
 		"isAvailable": true,
 		"picture": "img/recettes/salade-de-fruit-granite.jpg",
 		"calories": 400,

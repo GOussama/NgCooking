@@ -13,31 +13,80 @@ angular.module('myNgCookingYeomanApp')
 
     		//$cookies.remove('authenticated');
     		//$cookies.remove('MyUserName');
-
 		 $scope.userName = $cookies.get('MyUserName') || "" ;
+		 
 		 //$cookies.put('MyUserName','testUser');
-		
 		 $scope.authenticated =  $cookies.get('authenticated') || "" ;
+		
 		 //$cookies.put('authenticated', true) ;
-
 		console.log("The userName value is : " +  $scope.userName );
 
-  		MainService.getDatas($scope,'recettes').then(function(res) {
-			       
-			       $scope.recettes = res.data;
+  		MainService.getDatas($scope,'recettes').success(function(res, status) {
 
+  			        
+  			        var MyStringJson = JSON.stringify(res);				    
+  			        var MyJsonObject = JSON.parse(MyStringJson);
+			        setTheAverage(MyJsonObject);
+			        
+			        $scope.recettes = MyJsonObject;
+			        console.debug($scope.recettes);  
+			
 			});
+
+
+  		function setTheAverage(recettes) {
+
+			//console.debug(recettes);  
+  			angular.forEach(recettes, function(value, key) {
+
+  				if (typeof value.comments  !== "undefined"){
+
+	     				value.average = getSumOfMark(value) / value.comments.length;
+
+     				}
+     				else{
+     					value.average = -1;
+     				}
+
+ 			  });
+  		}
+
+  		function setnumbers(recettes){
+
+  			angular.forEach(recettes, function(value, key) {
+
+  					var t  = Math.random() * 10
+
+	     				value.number = Math.floor(t);
+
+ 			  });
+
+  		}
+
+  		function getSumOfMark(recette) {
+
+	  			var SumOfMark = 0;
+
+	  			angular.forEach(recette.comments, function(value, key) {
+
+     					SumOfMark += value.mark;
+
+ 				  });
+	  			
+  				return SumOfMark;
+  			}
+
 
   		$scope.logout = function() {
 
-		            $cookies.remove('authenticated');
-		            $cookies.remove('MyUserName');
-			$cookies.remove('userID');
+			           $cookies.remove('authenticated');
+			           $cookies.remove('MyUserName');
+				$cookies.remove('userID');
 
-		            console.log("I'm Loging out");
-		            
-		            $location.url('/home');
-		            $window.location.reload();
+			            console.log("I'm Loging out");
+			            
+			           $location.url('/home');
+			           $window.location.reload();
 		         
 		 }
 
@@ -53,5 +102,22 @@ angular.module('myNgCookingYeomanApp')
 	      		 	
 	      		 	return result;
 			};
+
+/*		
+			$scope.sortorder = function(item) {
+
+				console.log($scope.sortExpression);
+				
+				//console.log(item[$scope.sortExpression]);
+				
+				if(isNaN(item[$scope.sortExpression]))
+					
+					return item[$scope.sortExpression];
+
+				return parseInt(item[$scope.sortExpression]);
+			}
+
+*/
+		
 
   }]);
