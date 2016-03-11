@@ -11,12 +11,6 @@
 angular.module('myNgCookingYeomanApp')
   .controller('RecetteCtrl', ['$scope','$http','MainService', function ($scope,$http,MainService) {
 
-  	/*
-  	MainService.getDatas($scope,'recettes')
-  		.then(function(res){
-				// $scope.recettes = res.data ;		 	
-		});
-	*/
 
 	$scope.tag = function(message) {
 		    if ($scope.ingredients) {
@@ -30,6 +24,26 @@ angular.module('myNgCookingYeomanApp')
 		      return true;
 		    }
 		  };
+
+	$scope.calofilter = function(message){
+
+		if($scope.calMax && $scope.calMin){
+
+			if (message.calories < $scope.calMax  && message.calories > $scope.calMin){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+		}
+		else{
+		   return true;		
+		}
+
+	}
+
+
 
 	
 

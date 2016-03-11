@@ -26,9 +26,9 @@
 													<p><label for="">Valeur calorique de la recette <span class="fwn">(kcal/100g)</span></label></p>
 													<p>
 													<span class="span-label">entre :</span>
-													<input type="number" class="mr0" placeholder="ex: 450">
+													<input type="number" class="mr0" placeholder="ex: 450 " ng-model="calMin">
 													<span class="span-label">et</span>
-													<input type="number" placeholder="ex: 750">
+													<input type="number" placeholder="ex: 750 " ng-model="calMax">
 													</p>
 												</div>
 
@@ -57,7 +57,7 @@
 							<div class="result" >
 								<div class="recettes row" >
 
-										     <div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in recettes | orderBy:sortorder | filter:tag | filter:search" >
+										     <div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in recettes | orderBy:sortorder | filter:tag | filter:search | filter:calofilter" >
 										     
 												<a href="#/recettes_details/{{recette.id}}">
 													<img ng-src="{{recette.picture}}" alt="Cake au jambon et aux olives">
