@@ -35,7 +35,7 @@ angular.module('myNgCookingYeomanApp')
 
             /*
             var getData = function(fileName,cllbck){
-                $http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json').then(cllbck);    
+                $http.get('http://localhost:8888/NgCooking/scripts/json/' + fileName + '.json').then(cllbck);    
             };   
         	
             $scope.communuate = {};

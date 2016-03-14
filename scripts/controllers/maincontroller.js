@@ -33,6 +33,7 @@ angular.module('myNgCookingYeomanApp')
 			
 			});
 
+
   		function setTheAverage(recettes) {
 
 			//console.debug(recettes);  
@@ -50,17 +51,6 @@ angular.module('myNgCookingYeomanApp')
  			  });
   		}
 
-  		function setnumbers(recettes){
-
-  			angular.forEach(recettes, function(value, key) {
-
-  					var t  = Math.random() * 10
-
-	     				value.number = Math.floor(t);
-
- 			  });
-
-  		}
 
   		function getSumOfMark(recette) {
 
@@ -103,6 +93,7 @@ angular.module('myNgCookingYeomanApp')
 			};
 
 /*		
+
 			$scope.sortorder = function(item) {
 
 				console.log($scope.sortExpression);

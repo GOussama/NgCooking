@@ -11,6 +11,15 @@
 angular.module('myNgCookingYeomanApp')
   .controller('RecetteCtrl', ['$scope','$http','MainService', function ($scope,$http,MainService) {
 
+  	$scope.getTimes = function(n) {
+
+  		if(n == -1){
+  			n++;	
+  		}
+         		
+         		return new Array(n);
+    	};
+
 
 	$scope.tag = function(message) {
 		    if ($scope.ingredients) {
@@ -25,6 +34,8 @@ angular.module('myNgCookingYeomanApp')
 		    }
 		  };
 
+
+		  
 	$scope.calofilter = function(message){
 
 		if($scope.calMax && $scope.calMin){
@@ -44,9 +55,5 @@ angular.module('myNgCookingYeomanApp')
 	}
 
 
-
-	
-
-		
 
   }]);

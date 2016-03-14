@@ -57,16 +57,17 @@
 							<div class="result" >
 								<div class="recettes row" >
 
-										     <div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in recettes | orderBy:sortorder | filter:tag | filter:search | filter:calofilter" >
+										     <div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in ( filtredRecettes = ( recettes | orderBy: sortorder | filter:tag | filter:search | filter:calofilter )) " >
 										     
 												<a href="#/recettes_details/{{recette.id}}">
 													<img ng-src="{{recette.picture}}" alt="Cake au jambon et aux olives">
 
-													<div class="top" title="note : {{recette.average}}/5">
+													<div class="top" title="note : {{recette.average / 5}}">
 
 														<span class="note">
-															<span class="glyphicon glyphicon-heart"></span>
-															<span class="glyphicon glyphicon-heart"></span>
+
+															<span class="glyphicon glyphicon-heart" ng-repeat ="t in getTimes(recette.average) track by $index " >
+
 														</span>
 
 													</div>
@@ -80,18 +81,16 @@
 											  </div>
 											  
 									  
-									<!-- <p class=" col-xs-12 blank">Aucune recette ne correspond à votre recherche</p> -->
-									
-
+									 <p class=" col-xs-12 blank" ng-hide="filtredRecettes.length > 0">Aucune recette ne correspond à votre recherche</p> 
 								</div>
 							</div>
 
 							<!--
-							<div class="row showmore">
-								<div class="col-xs-12">
-									<button type="button" class="btn btn_color1"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+								<div class="row showmore">
+									<div class="col-xs-12">
+										<button type="button" class="btn btn_color1"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+									</div>
 								</div>
-							</div>
 							-->
 						</section>
 
@@ -101,10 +100,10 @@
 								<div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in recettes | orderBy : '-average'">
 									<a href="#/recettes_details/{{recette.id}}">
 										<img ng-src="{{recette.picture}}"  alt="Cake au jambon et aux olives">
-										<div class="top" title="note : {{recette.average}}/5">
-											<span class="note">
-												<span class="glyphicon glyphicon-heart"></span>
-												<span class="glyphicon glyphicon-heart"></span>
+										<div class="top" title="note : {{recette.average / 5}}">
+											<span class="note" >
+												<span class="glyphicon glyphicon-heart" ng-repeat ="t in getTimes(recette.average) track by $index ">
+												
 											</span>
 										</div>
 										<div class="bot">
@@ -120,13 +119,12 @@
 							<h2 class="title">~ Nouvelles recettes ~</h2>
 							<div class="recettes row">
 								<div class="col-xs-6 col-sm-3 recette" ng-repeat="recette in recettes | orderBy :'-created_at'">
-									<a href="recettes_details.html">
+									<a href="#/recettes_details/{{recette.id}}">
 										<img ng-src="{{recette.picture}}"  alt="Le tajine de ta maman">
-										<div class="top" title="note : {{recette.average}}/5">
+										<div class="top" title="note : {{recette.average / 5}}">
 											<span class="note">
-												<span class="glyphicon glyphicon-heart"></span>
-												<span class="glyphicon glyphicon-heart"></span>
-												<span class="glyphicon glyphicon-heart"></span>
+												<span class="glyphicon glyphicon-heart" ng-repeat ="t in getTimes(recette.average) track by $index ">
+												
 											</span>
 										</div>
 										<div class="bot">

@@ -19,7 +19,7 @@
 											<span class="star glyphicon glyphicon-heart"></span>
 											<span class="star glyphicon glyphicon-heart"></span>
 										</span> 
-										<span class="notes">| 4,8/5 - 120 votes</span>
+										<span class="notes">| {{Recetteaverage / 5 }} - {{recette.comments.length}} votes</span>
 									</p>
 
 									<div class="ingredients_list">
@@ -32,7 +32,7 @@
 										</ul>
 									</div>
 
-									<p class="rec_cal">Valeur calorique <span class="for">(100g)</span> : <span class="val">{{recette.calories}} kcal</span></p>
+									<p class="rec_cal">Valeur calorique <span class="for">(100g)</span> : <span class="val">{{AverageCalories}} kcal</span></p>
 										
 								</div>
 
@@ -53,8 +53,6 @@
 								
 								<div>
 								<br>
-									<b>Par</b>								
-										{{user.surname}}
 									</div>
 							</div>
 						</section>
@@ -66,7 +64,7 @@
 									<h2 class="overline-title"><span class="text">Commentaires</span></h2>
 								</div>
 								
-								<div class="col-xs-12 col-sm-6">
+								<div class="col-xs-12 col-sm-6" ng-show="authenticated" >
 									<div class="panel">
 										<div class="filters">
 											<h3 class="panel_title">Donnez-nous votre avis !</h3>
@@ -104,8 +102,16 @@
 									</div>
 								</div>
 
-								<div class="col-xs-12 col-sm-6">
+								<div ng-class="listComments" >
 									<ul class="comments">
+
+
+										<li class="comment" ng-repeat="comment in recette.comments" >
+											<p class="name">{{comment.title}}<span class="note">4/5</span></p>
+											<p class="by">par <a href="communaute_details.html">{{comment.UserFirstname}}</a></p>
+											<p class="text">Franchement cette NgRecette, c’est de la bombe. Le genre de saveurs qui t’éveillent les papilles, t’as vu ! Woula, j’ai kiffé</p>
+										</li>
+
 										<li class="comment">
 											<p class="name">Miam miam miaouuu<span class="note">4/5</span></p>
 											<p class="by">par <a href="communaute_details.html">Béné du 34</a></p>

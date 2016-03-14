@@ -7,7 +7,7 @@ angular.module('myNgCookingYeomanApp')
 
 	DataFactory.getUsers = function($scope,fileName){
 
-		return $http.get('http://localhost:8888/NgCooking/json/' + fileName + '.json');
+		return $http.get('http://localhost:8888/NgCooking/scripts/json/' + fileName + '.json');
 			
 	}
 	
