@@ -22,15 +22,25 @@ angular.module('myNgCookingYeomanApp')
 
 
 	$scope.tag = function(message) {
+		   
 		    if ($scope.ingredients) {
+		     
 		      return $scope.ingredients.replace(/\s*,\s*/g, ',').split(',').every(function(tagi) {
+		     
 		        return message.ingredients.some(function(objTag){
+		     
 		          return objTag.indexOf(tagi) !== -1;
+		     
 		        });
+		     
 		      });
+		    
 		    }
+		    
 		    else {
-		      return true;
+		    
+		    	  return true;
+		    	  
 		    }
 		  };
 

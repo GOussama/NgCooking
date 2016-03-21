@@ -58,7 +58,7 @@
 					<p class=" col-xs-12 blank">Aucun ingrédient ne correspond à votre recherche</p>
 					-->
 
-					<div class="col-xs-6 col-sm-12 ingredient" ng-repeat=" ingredient in ( ingredientLoader = ( ingredients | limitTo : ingredientLimit)) | filter:search " >
+					<div class="col-xs-6 col-sm-12 ingredient" ng-repeat=" ingredient in ( ingredientLoader = ( ingredients | limitTo : ingredientLimit )) | filter:search " >
 						<div class="ing-wrap">
 							<div class="top">
 								<p class="name">{{ingredient.name}}</p>

@@ -19,7 +19,8 @@ angular.module('myNgCookingYeomanApp')
 		 $scope.authenticated =  $cookies.get('authenticated') || "" ;
 		
 		 //$cookies.put('authenticated', true) ;
-		console.log("The userName value is : " +  $scope.userName );
+		//console.log("The userName value is : " +  $scope.userName );
+
 
   		MainService.getDatas($scope,'recettes').success(function(res, status) {
 
@@ -29,7 +30,7 @@ angular.module('myNgCookingYeomanApp')
 			        setTheAverage(MyJsonObject);
 			        
 			        $scope.recettes = MyJsonObject;
-			        console.debug($scope.recettes);  
+			        //console.debug($scope.recettes);  
 			
 			});
 
@@ -93,7 +94,6 @@ angular.module('myNgCookingYeomanApp')
 			};
 
 /*		
-
 			$scope.sortorder = function(item) {
 
 				console.log($scope.sortExpression);
@@ -106,7 +106,6 @@ angular.module('myNgCookingYeomanApp')
 
 				return parseInt(item[$scope.sortExpression]);
 			}
-
 */
 		
 

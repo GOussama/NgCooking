@@ -12,8 +12,10 @@ angular.module('myNgCookingYeomanApp')
 .controller('ShowRecetteCtrl', ['$scope','$routeParams','MainService','$cookies',function($scope,$routeParams,MainService,$cookies) {
 
     $scope.recette_id = $routeParams.recetteId;
+    $scope.commentLimit = 1;
+    $scope.recetteLimit = 4;
 
-    $scope.listComments = ( $cookies.get('authenticated')  ? 'col-xs-12 col-xs-6' : 'col-xs-12');
+    $scope.listComments = ( $cookies.get('authenticated')  ? 'col-xs-12 col-xs-6' : 'col-xs-12' );
 
     MainService.getDatas($scope,'recettes')
                         .then(function(res){
@@ -26,9 +28,19 @@ angular.module('myNgCookingYeomanApp')
                                     return false;               
                              })[0];
 
+                             //Verifie that comments is not null to avoid undefined 
+
+                            if (typeof $scope.recette.comments  !== "undefined"){
+
+                              var commentNumber = $scope.recette.comments.length ;
+
+                            }
+                            else{
+                              commentNumber = -1;
+                            }
 
 
-                        $scope.Recetteaverage =  getSumOfMark($scope.recette) / $scope.recette.comments.length;
+                        $scope.Recetteaverage =  getSumOfMark($scope.recette) / commentNumber;
 
 
 
@@ -53,7 +65,7 @@ angular.module('myNgCookingYeomanApp')
 
                                                           
 
-                        console.log( $scope.recette.comments );
+                        //console.log( $scope.recette.comments.UserFirstname );
 
                         MainService.getDatas($scope,'ingredients')
                                            .then(function(res){
@@ -129,20 +141,30 @@ angular.module('myNgCookingYeomanApp')
    
     }
 
+ /*       
+    $scope.MyCustomfilter = function(message){
 
-//$scope.user = {};
-/*
-MainService.getDatas($scope,'communaute')
-                        .then(function(res){
+            if  ( message.average > 0 ) {
+                      
+                         return true;
+                    }
+                    else{
 
-                             $scope.user = res.data.filter(function(user){ 
-                                    if (user.id == $scope.recette.creatorId)
-                                        
-                                            return true;
+                        return false;
+                    }
 
-                                    return false;               
-                             })[0]; 
-            });
+    }
 */
+
+  $scope.getTimes = function(n) {
+
+      if(n == -1){
+        n++;  
+      }
+            
+            return new Array(n);
+      };
+
+
 
 }]);

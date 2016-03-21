@@ -1,4 +1,4 @@
-<div class="content" id="content_recettes_new">
+<div class="content" id="content_recettes_new" ng-controller="NewRecetteCtrl">
 						
 						<h1 class="page-title">Nouvelle recette</h1>
 
@@ -6,26 +6,26 @@
 							<form action="" novalidate>
 								<div class="row">
 									<div class="col-xs-6">
+										
 										<p class="line">
 											<label for="">Le nom de votre recette</label>
-											<input type="text" class="mb0 wide" required>
+											<input type="text" class="mb0 wide"  ng-model = "Nouvellerecette.RecetteName" required>
 										</p>
+										
 										<p class="line">
 											<label for="">Catégorie</label>
-											<select name="" id="" class="mb0 wide">
-												<option value=""></option>
-												<option value="meat">Viandes</option>
-												<option value="fruit">Fruits</option>
-												<option value="vegetable">Légumes</option>
-												<option value="fish">Poissons</option>
-												<option value="alcool">Alcools</option>
-												<option value="">Etc...</option>
+											<select name="" id="" class="mb0 wide" ng-model = "Nouvellerecette.RecetteCategorie" required>
+
+												<option ng-repeat="categorie in categories" value="{{categorie.id}}">{{categorie.nameToDisplay}}</option>
+												
 											</select>
 										</p>
+										
 										<p class="line">
 											<label for="">Préparation de votre recette</label>
-											<textarea id="recette_desc" class="resizable mb0 wide" required></textarea>
+											<textarea id="recette_desc" class="resizable mb0 wide" ng-model ="Nouvellerecette.Recettepreparation" required></textarea>
 										</p>
+
 									</div>
 									<div class="col-xs-6">
 										<p class="line">
@@ -36,6 +36,7 @@
 											<img class="current_img" src="img/recette_placeholder.jpg" alt="Visuel recette">
 										</p>
 									</div>
+
 									<div class="col-xs-12">
 										<div class="hr mt2 mb2"></div>
 									</div>
@@ -44,55 +45,47 @@
 											<label for="">Sélectionnez tous les ingrédients de votre recette</label>
 										</p>
 										<p class="ac">
-											<select name="" id="">
-												<option value="all">Toutes les catégories</option>
-												<option value="viandes">Viandes</option>
-												<option value="legumes">legumes</option>
-												<option value="fruits">fruits</option>
-												<option value="poissons">poissons</option>
-												<option value="produits-laitiers">Produits laitiers</option>
-												<option value="etc">etc...</option>
+											
+											<select data-ng-model="selectedCategory" data-ng-options="option.nameToDisplay for option in options1 | orderBy : nameToDisplay ">
 											</select>
+
+											<select data-ng-model="selectedIngredient"  data-ng-options="ingredient.name for ingredient in options = (options2 | filter:{ category:selectedCategory.id})">
+											</select>
+									
+
+											<!-- <select data-ng-model="option1" data-ng-options="option.nameToDisplay for option in options1" data-ng-change="getOptions2()">
+											</select>
+
 											<span class="span-label"><span class="glyphicon glyphicon-menu-right nm"></span></span>
+											
 											<select name="" id="">
-												<option value="">Poulet</option>
-												<option value="">Maïs</option>
-												<option value="">Blé</option>
-												<option value="">Boeuf</option>
-												<option value="">Pomme</option>
-												<option value="">Lait</option>
-												<option value="">Gruyère</option>
-												<option value="etc">etc...</option>
-											</select>
-											<button type="button" class="btn btn_color3"><span class="glyphicon glyphicon-plus"></span></button>
+												<option ng-repeat="ingredient in ingredients" value="{{ingredient.id}}">{{ingredient.name}}</option>
+											</select> -->
+
+
+
+
+											<button type="button" class="btn btn_color3" ng-click="addItem()" ng-disabled = "adddisable" ><span class="glyphicon glyphicon-plus"></span></button>
+
 										</p>
 										<div class="ingredients_list">
 											<ul class="list ac">
-												<li class="item">
-													<img class="item-img" src="img/ingredients/tomate.jpg" alt="tomate">
-													<p class="item-name" title="tomate">tomate</p>
-													<button type="button" class="remove_ingredient"><span class="glyphicon glyphicon-remove"></span></button>
-												</li>
-												<li class="item">
-													<img class="item-img" src="img/ingredients/raisin.jpg" alt="raisin">
-													<p class="item-name" title="raisin">raisin</p>
-													<button type="button" class="remove_ingredient"><span class="glyphicon glyphicon-remove"></span></button>
-												</li>
-												<li class="item">
-													<img class="item-img" src="img/ingredients/kiwi.jpg" alt="kiwi">
-													<p class="item-name" title="kiwi">kiwi</p>
-													<button type="button" class="remove_ingredient"><span class="glyphicon glyphicon-remove"></span></button>
-												</li>
-												<li class="item">
-													<img class="item-img" src="img/ingredients/pasteque.jpg" alt="pasteque">
-													<p class="item-name" title="pasteque">pasteque</p>
-													<button type="button" class="remove_ingredient"><span class="glyphicon glyphicon-remove"></span></button>
-												</li>
+																
+												<li class="item" ng-repeat="item in items">
+													<img class="item-img" src="img/ingredients/{{item.title}}.jpg" alt="tomate">
+													<p class="item-name" title="tomate">{{item.title}}</p>
+													<button type="button" class="remove_ingredient" ng-click="deleteItem($index)"><span class="glyphicon glyphicon-remove"></span></button>
+												</li>											
 											</ul>
+											<br/>
+											<p ng-show ="message.length > 0" align="center" style="color:red;">
+												{{message}}
+											</p>
 										</div>
+
 										<div class="ac">
 											<p class="recette_total_calories">
-												<span class="tit">Valeur calorique <span class="mass">(100g)</span> : </span><span class="val">270<span class="unit">kcal</span></span>
+												<span class="tit">Valeur calorique <span class="mass">(100g)</span> : </span><span class="val">{{caloriesSum}} <span class="unit">kcal</span></span>
 											</p>
 										</div>
 									</div>
@@ -100,11 +93,11 @@
 										<div class="hr mb2"></div>
 									</div>
 									<div class="col-xs-12 ac">
-										<button type="button" class="btn btn_color3 recette_save"><span class="glyphicon glyphicon-ok mr0"></span><span>Valider ma recette</span></button>
+										<button type="button" ng-click="saveRecette()" class="btn btn_color3 recette_save"><span class="glyphicon glyphicon-ok mr0"></span><span>Valider ma recette</span></button>
 									</div>
 
 									<!-- Afficher au clic sur "valider ma recette" lorsque tout s'est bien déroulé -->
-									<div class="col-xs-12">
+									<div class="col-xs-12" ng-show="recetteAjoutee">
 										<p class="ac mt2 tb">
 											<span class="glyphicon glyphicon-thumbs-up color3"></span>
 											<span>Votre recette a bien été ajoutée !</span>
@@ -115,7 +108,7 @@
 									</div>
 
 									<!-- Afficher au clic sur "valider ma recette" si certains éléments sont manquants -->
-									<div class="col-xs-12">
+									<div class="col-xs-12" ng-show="recettePasAjoutee">
 										<p class="ac mt2 tb">
 											<span class="glyphicon glyphicon-exclamation-sign color2"></span>
 											<span>Woops ! Votre recette est super foireuse</span>
