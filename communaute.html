@@ -20,17 +20,15 @@
 		
 		<div class="users row">
 
-			<div class="col-xs-6 col-sm-3 user" ng-repeat="user in communautes | orderBy:sortorder ">
+			<div class="col-xs-6 col-sm-3 user" ng-repeat="user in communautes | orderBy:sortorder | limitTo : communauteLimit ">
 					
 					<a href="#/communaute_details/{{user.id}}">
 						<img ng-src="{{user.picture}}" alt="Hetta Van Deventer">
 						<div class="text">
 							<p class="name">{{user.firstname}}</p>
 							<p class="level">
-								<span class="stars">
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
+								<span class="stars"  >
+									<span class="glyphicon glyphicon-star" ng-repeat="t in getTimes(user.level) track by $index" ></span>
 								</span>
 								<span class="status">Expert</span>
 							</p>
@@ -42,7 +40,7 @@
 		
 		<div class="row showmore">
 			<div class="col-xs-12">
-				<button type="button" class="btn btn_color1"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+				<button type="button" class="btn btn_color1" ng-click =" communauteLimit = communauteLimit + 4 "><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
 			</div>
 		</div>
 

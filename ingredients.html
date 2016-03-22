@@ -36,10 +36,13 @@
 								<div class="filter">
 									<p><label for="">Nombre de calories <span class="fwn">(kcal/100g)</span></label></p>
 									<p>
+										
 										<span class="span-label">entre :</span>
-										<input type="number" class="mr0" placeholder="ex: 70">
+										<input type="number" class="mr0" ng-model="calMin" placeholder="ex: 70">
+										
 										<span class="span-label">et</span>
-										<input type="number" placeholder="ex: 220">
+										<input type="number" ng-model="calMax" placeholder="ex: 220">
+
 									</p>
 								</div>
 
@@ -58,7 +61,7 @@
 					<p class=" col-xs-12 blank">Aucun ingrédient ne correspond à votre recherche</p>
 					-->
 
-					<div class="col-xs-6 col-sm-12 ingredient" ng-repeat=" ingredient in ( ingredientLoader = ( ingredients | limitTo : ingredientLimit )) | filter:search " >
+					<div class="col-xs-6 col-sm-12 ingredient" ng-repeat=" ingredient in ( ingredientLoader = ( ingredients | limitTo : ingredientLimit | filter:search | filter:calofilter )) " >
 						<div class="ing-wrap">
 							<div class="top">
 								<p class="name">{{ingredient.name}}</p>
@@ -79,9 +82,10 @@
 								<div class="list">
 									<p class="list-title">Aliments similaires</p>
 									<ul>
-										<li class="item" >
-											<img class="item-img" src="img/ingredients/boeuf.jpg" alt="Boeuf">
-											<p class="item-name" title="Boeuf">Boeuf</p>
+										<li class="item" ng-repeat=" ingredientsim in ( ingredientLoader = ( ingredients | filter : ingredient.category  | limitTo : ingredientSimLimit )) " >
+
+											<img class="item-img" src="img/ingredients/{{ingredientsim.id}}.jpg" alt="Boeuf" >
+											<p class="item-name" title="Boeuf">{{ingredientsim.name}}</p>
 										</li>
 									</ul>
 								</div>
